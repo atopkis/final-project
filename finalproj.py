@@ -349,6 +349,8 @@ def something(user_inp):
         )
         fig = go.Figure(data=data, layout=layout)
         plot_url = py.plot(fig, filename='bar-graph')
+        return b
+
     if user_inp == 'Box Office vs Rating':
         money_lst=[]
         ratings_lst=[]
@@ -379,8 +381,10 @@ def something(user_inp):
         title='Scatter Plot Comparing Movies Box Office and Rotten Tomatoes Rating',
         showlegend=False
         )
+
         fig = go.Figure(data=data, layout=layout)
         plot_url = py.plot(fig, filename='text-chart-basic')
+        return b
 
     if user_inp == 'Genre Distribution':
         genre_dict={}
@@ -413,6 +417,7 @@ def something(user_inp):
         )
         fig=go.Figure(data=data, layout=layout)
         plot_url=py.plot(fig, filename='basic_pie_chart')
+        return b
 
     if user_inp == 'Movie Rating Comparison':
         titles_lst=[]
@@ -463,6 +468,7 @@ def movie_rating_plotly(user_inp):
     )
     fig=go.Figure(data=data, layout=layout)
     plot_url=py.plot(fig, filename='basic-bar')
+    return b
 
     conn.close()
 
@@ -505,13 +511,13 @@ def interactive_prompt():
                     user_inp=input('Enter one of the command options: ')
                     if user_inp =='exit':
                         break
-                    if user_inp in command_words:
+                    elif user_inp in command_words:
                         something(user_inp)
                         if user_inp == 'Movie Rating Comparison':
                             title_inp=input('Enter a movie name from the list of the movies: ')
                             movie_rating_plotly(title_inp)
                             continue
-                    if user_inp =='help':
+                    elif user_inp =='help':
                         continue
                     else:
                         print('Invalid Command')
